@@ -1,0 +1,17 @@
+{
+  "name": "@jamshop/wordpress-to-markdown",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "json-to-frontmatter-markdown": "^1.0.0",
+    "node-fetch": "^2.6.1",
+    "turndown": "^7.0.0"
+  }
+}
