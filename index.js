@@ -13,7 +13,7 @@ const resolvePermalinks = (slug, contentType) => {
   return `${contentType}/${slug}/`;
 };
 
-const transformURL = (url, baseurl) => {
+const transformURLs = (url, baseurl) => {
   url = `${url.replace(baseurl,"/")}`
   if(url.includes("wp-admin")) {
     url = "";
@@ -70,7 +70,7 @@ const getContent = async (URL, contentTypes) => {
 const generateFiles = (URL, content, overrides) => {
   const options = {
     resolvePermalinks,
-    transformURL,
+    transformURLs,
     output: "./wp",
     ...overrides,
   };
@@ -78,7 +78,7 @@ const generateFiles = (URL, content, overrides) => {
   turndownService.addRule("transformHref", {
     filter: (node) => node.nodeName === "A" && node.getAttribute("href"),
     replacement: (content, node) =>
-      `[${content}](${options.transformURL(node.getAttribute("href"), URL)})`,
+      `[${content}](${options.transformURLs(node.getAttribute("href"), URL)})`,
   });
 
   turndownService.addRule("transformSrc", {
@@ -88,7 +88,7 @@ const generateFiles = (URL, content, overrides) => {
       return isImage || isSource;
     },
     replacement: (content, node) =>
-      `[${content}](${options.transformURL(node.getAttribute("src"), URL)})`,
+      `[${content}](${options.transformURLs(node.getAttribute("src"), URL)})`,
   });
 
   // ToDo: Add rule for srcSet
